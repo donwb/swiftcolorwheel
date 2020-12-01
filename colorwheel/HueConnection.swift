@@ -39,4 +39,14 @@ class HueConnection {
         
         return newURLComps
     }
+    
+    func GetLightURL(lightNumber: String) -> URLComponents? {
+        let base = GetBaseURL()
+        let existingURL = base?.url?.absoluteString
+        
+        let newURL = existingURL! + "/lights/" + lightNumber
+        let newURLComps = URLComponents(string: newURL)
+        
+        return newURLComps
+    }
 }

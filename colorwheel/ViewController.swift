@@ -18,7 +18,6 @@ class ViewController: NSViewController {
     
     var lights: [String?: LightsInfo] = [:]
     var selectedLight: String = ""
-    let rootURL = "http://192.168.1.16"
     var hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     
     override func viewDidLoad() {
@@ -62,12 +61,14 @@ class ViewController: NSViewController {
         
         print("going after " + self.selectedLight)
         
-        if let urlComps = URLComponents(string: "http://192.168.1.16/api/PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq/lights/17"){
-            getLightDetail(urlComps: urlComps, completion: {lightDetail, error in
-                print(lightDetail?.name)
-                print(lightDetail?.state.on)
-            })
-        }
+        let connection = HueConnection(username: self.hueUsername)
+        let newUrlComps = connection.GetLightURL(lightNumber: self.selectedLight)
+    
+        getLightDetail(urlComps: newUrlComps!, completion: {lightDetail, error in
+            print(lightDetail?.name)
+            print(lightDetail?.state.on)
+        })
+            
         
     }
     
@@ -82,7 +83,7 @@ class ViewController: NSViewController {
         let newUrlComps = connection.GetLightsURL()
         print(newUrlComps?.url)
         
-        let res = getLightsInfo(urlComps: newUrlComps!, completion:{lights, error in
+        getLightsInfo(urlComps: newUrlComps!, completion:{lights, error in
             
             guard let lights = lights else {return}
             
