@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED1278012576A22500027239 /* lights.json in Resources */ = {isa = PBXBuildFile; fileRef = ED1278002576A22500027239 /* lights.json */; };
+		ED1278042576A33500027239 /* lights.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1278032576A33500027239 /* lights.swift */; };
+		ED1278072576B24400027239 /* light.json in Resources */ = {isa = PBXBuildFile; fileRef = ED1278062576B24400027239 /* light.json */; };
+		ED12780A2576B26500027239 /* LightDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED1278092576B26500027239 /* LightDetail.swift */; };
+		ED12780D2576DDCC00027239 /* HueConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED12780C2576DDCC00027239 /* HueConnection.swift */; };
+		ED8071B125759F050030060A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = ED8071B025759F050030060A /* SwiftyJSON */; };
 		ED912FB72570AB43004298DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED912FB62570AB43004298DA /* AppDelegate.swift */; };
 		ED912FB92570AB43004298DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED912FB82570AB43004298DA /* ViewController.swift */; };
 		ED912FBB2570AB44004298DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED912FBA2570AB44004298DA /* Assets.xcassets */; };
@@ -14,6 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ED1278002576A22500027239 /* lights.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = lights.json; sourceTree = "<group>"; };
+		ED1278032576A33500027239 /* lights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lights.swift; sourceTree = "<group>"; };
+		ED1278062576B24400027239 /* light.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = light.json; sourceTree = "<group>"; };
+		ED1278092576B26500027239 /* LightDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDetail.swift; sourceTree = "<group>"; };
+		ED12780C2576DDCC00027239 /* HueConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HueConnection.swift; sourceTree = "<group>"; };
 		ED912FB32570AB43004298DA /* colorwheel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = colorwheel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED912FB62570AB43004298DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED912FB82570AB43004298DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -21,6 +32,7 @@
 		ED912FBD2570AB44004298DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED912FBF2570AB44004298DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED912FC02570AB44004298DA /* colorwheel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = colorwheel.entitlements; sourceTree = "<group>"; };
+		ED912FC72570AE44004298DA /* colorwheelDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = colorwheelDebug.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED8071B125759F050030060A /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +66,14 @@
 		ED912FB52570AB43004298DA /* colorwheel */ = {
 			isa = PBXGroup;
 			children = (
+				ED912FC72570AE44004298DA /* colorwheelDebug.entitlements */,
 				ED912FB62570AB43004298DA /* AppDelegate.swift */,
 				ED912FB82570AB43004298DA /* ViewController.swift */,
+				ED12780C2576DDCC00027239 /* HueConnection.swift */,
+				ED1278002576A22500027239 /* lights.json */,
+				ED1278032576A33500027239 /* lights.swift */,
+				ED1278062576B24400027239 /* light.json */,
+				ED1278092576B26500027239 /* LightDetail.swift */,
 				ED912FBA2570AB44004298DA /* Assets.xcassets */,
 				ED912FBC2570AB44004298DA /* Main.storyboard */,
 				ED912FBF2570AB44004298DA /* Info.plist */,
@@ -79,6 +98,9 @@
 			dependencies = (
 			);
 			name = colorwheel;
+			packageProductDependencies = (
+				ED8071B025759F050030060A /* SwiftyJSON */,
+			);
 			productName = colorwheel;
 			productReference = ED912FB32570AB43004298DA /* colorwheel.app */;
 			productType = "com.apple.product-type.application";
@@ -106,6 +128,9 @@
 				Base,
 			);
 			mainGroup = ED912FAA2570AB43004298DA;
+			packageReferences = (
+				ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+			);
 			productRefGroup = ED912FB42570AB43004298DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -120,7 +145,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED1278012576A22500027239 /* lights.json in Resources */,
 				ED912FBB2570AB44004298DA /* Assets.xcassets in Resources */,
+				ED1278072576B24400027239 /* light.json in Resources */,
 				ED912FBE2570AB44004298DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,7 +160,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED912FB92570AB43004298DA /* ViewController.swift in Sources */,
+				ED1278042576A33500027239 /* lights.swift in Sources */,
 				ED912FB72570AB43004298DA /* AppDelegate.swift in Sources */,
+				ED12780A2576B26500027239 /* LightDetail.swift in Sources */,
+				ED12780D2576DDCC00027239 /* HueConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = colorwheel/colorwheel.entitlements;
+				CODE_SIGN_ENTITLEMENTS = colorwheel/colorwheelDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = YR2B55YA56;
@@ -330,6 +360,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED8071B025759F050030060A /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED912FAB2570AB43004298DA /* Project object */;
 }
