@@ -19,11 +19,15 @@ struct LightDetail: Codable {
 // MARK: - State
 struct State: Codable {
     let on: Bool
-    let bri, hue, sat: Int
-    let effect: String
-    let xy: [Double]
-    let ct: Int
-    let alert, colormode, mode: String
+    let bri: Int?
+    let hue: Int?
+    let sat: Int?
+    let effect: String?
+    let xy: [Double]?
+    let ct: Int?
+    let alert: String?
+    let colormode: String?
+    let mode: String?
     let reachable: Bool
 }
 
