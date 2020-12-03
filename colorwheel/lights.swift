@@ -103,6 +103,7 @@ enum Alert: String, Codable {
 enum Colormode: String, Codable {
     case ct = "ct"
     case xy = "xy"
+    case hs = "hs"
 }
 
 

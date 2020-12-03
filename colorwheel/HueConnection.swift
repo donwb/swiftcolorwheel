@@ -17,6 +17,9 @@ class HueConnection {
         self.username = username
     }
     
+    
+
+    
     func GetBaseURL() -> URLComponents? {
         
         if var urlComps = URLComponents(string: self.rootURL) {
@@ -49,4 +52,17 @@ class HueConnection {
         
         return newURLComps
     }
+    
+    func GetLightState(lightNumber: String) -> URLComponents? {
+        let base = GetBaseURL()
+        let existingURL = base?.url?.absoluteString
+        ///lights/14/state"
+        let newURL = existingURL! + "/lights/" + lightNumber + "/state"
+        let newURLComp = URLComponents(string: newURL)
+        
+        return newURLComp
+        
+    }
+    
+ 
 }

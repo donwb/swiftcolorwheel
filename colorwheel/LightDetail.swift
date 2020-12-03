@@ -18,10 +18,23 @@ struct LightDetail: Codable {
 
 // MARK: - State
 struct State: Codable {
-    let on: Bool
-    let bri: Int?
-    let hue: Int?
-    let sat: Int?
+    init() {
+        on = false
+        reachable = false
+        bri = nil
+        hue = nil
+        sat = nil
+        effect = nil
+        xy = nil
+        ct = nil
+        alert = nil
+        colormode = nil
+        mode = nil
+        }
+    var on: Bool
+    var bri: Int?
+    var hue: Int?
+    var sat: Int?
     let effect: String?
     let xy: [Double]?
     let ct: Int?

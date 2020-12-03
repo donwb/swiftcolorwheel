@@ -13,8 +13,11 @@ import SwiftyJSON
 class ViewController: NSViewController {
 
     @IBOutlet weak var tableView: NSTableView!
-    
     @IBOutlet weak var textLightNumber: NSTextField!
+    @IBOutlet weak var nameLabel: NSTextField!
+    @IBOutlet weak var stateLabel: NSTextField!
+    @IBOutlet weak var hueLabel: NSTextField!
+    
     
     var lights: [String?: LightsInfo] = [:]
     var selectedLight: String = ""
@@ -22,8 +25,6 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -65,8 +66,16 @@ class ViewController: NSViewController {
         let newUrlComps = connection.GetLightURL(lightNumber: self.selectedLight)
     
         getLightDetail(urlComps: newUrlComps!, completion: {lightDetail, error in
-            print(lightDetail?.name)
-            print(lightDetail?.state.on)
+            DispatchQueue.main.async {
+                let nameLabel = "Name: " + (lightDetail?.name != nil ? lightDetail!.name : "none")
+                let stateLabel = "State: " + (lightDetail?.state != nil ? String(lightDetail!.state.on): "unk")
+                let hueLabel = "Hue: " + (lightDetail?.state.hue! != nil ? String(lightDetail!.state.hue!) : "unk")
+                
+                self.nameLabel.stringValue = nameLabel
+                self.stateLabel.stringValue = stateLabel
+                self.hueLabel.stringValue = hueLabel
+            }
+            
         })
             
         
@@ -74,6 +83,48 @@ class ViewController: NSViewController {
     
     
     @IBAction func toggleLightStateClicked(_ sender: NSButton) {
+       
+        
+        do {
+            let hc = HueConnection(username: hueUsername)
+            let cw = ColorWheel()
+            let blue = cw.GetColorState(primary: true, color: .blue)
+            
+            
+            let jsonEncoder = JSONEncoder()
+            let jsonData = try jsonEncoder.encode(blue)
+            let json = String(data: jsonData, encoding: .utf8)
+            
+            print(json)
+            
+            print("starting PUT")
+            
+            let urlComps = hc.GetLightState(lightNumber: self.selectedLight)
+            
+            var request = URLRequest(url: urlComps!.url!)
+            request.httpMethod = "PUT"
+            request.httpBody = jsonData
+            
+            let task = URLSession.shared.dataTask(with: request) {data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "no data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String:Any]{
+                    print(responseJSON)
+                }
+            }.resume()
+            
+        } catch {
+            print("damn, didn't work")
+        }
+        
+        
+        
+        
+        
+        
     }
     
     
