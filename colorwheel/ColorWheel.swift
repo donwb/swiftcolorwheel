@@ -11,6 +11,8 @@ import Foundation
 class ColorWheel {
 
     private let _hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
+    private var _timer: Timer?
+    
     
     enum WheelLights: String {
         case fan1 = "14"
@@ -121,7 +123,7 @@ class ColorWheel {
         }
     }
     
-    func makeColorLightRequest(color: ColorEnum, primary: Bool, light: WheelLights) -> URLRequest? {
+    fileprivate func makeColorLightRequest(color: ColorEnum, primary: Bool, light: WheelLights) -> URLRequest? {
         let hc = HueConnection(username: _hueUsername)
         
         let cw = ColorWheel()
@@ -151,6 +153,19 @@ class ColorWheel {
         
         InvokeLights(blue!, green!, orange!, red!)
     
+    }
+    
+    func Rotate() -> Void {
+        _timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        
+    }
+    
+    func StopRotation() -> Void {
+        _timer?.invalidate()
+    }
+    
+    @objc func fireTimer() {
+        print("timer fired")
     }
 }
 

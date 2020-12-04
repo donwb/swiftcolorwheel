@@ -875,6 +875,17 @@
                                     <action selector="startColorWheel:" target="XfG-lQ-9wD" id="uPv-a9-dAI"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2jq-sM-CPv">
+                                <rect key="frame" x="321" y="7" width="140" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Stop Color Wheel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bhg-ry-D8g">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="stopColorWheel:" target="XfG-lQ-9wD" id="ths-73-rTh"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>

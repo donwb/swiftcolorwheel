@@ -23,6 +23,8 @@ class ViewController: NSViewController {
     var selectedLight: String = ""
     var hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     
+    var _colorWheel: ColorWheel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,11 +164,17 @@ class ViewController: NSViewController {
     
     
     @IBAction func startColorWheel(_ sender: NSButton) {
-        let colorWheel = ColorWheel()
+        _colorWheel = ColorWheel()
         
-        colorWheel.SetInitialWheelPosition()
+        //colorWheel.SetInitialWheelPosition()
+        
+        _colorWheel?.Rotate()
+        
     }
     
+    @IBAction func stopColorWheel(_ sender: NSButton) {
+        _colorWheel?.StopRotation()
+    }
     
     
     func getLightsInfo(urlComps: URLComponents, completion:@escaping ([String:LightsInfo]?, Error?) -> Void) {
