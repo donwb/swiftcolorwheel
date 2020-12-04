@@ -121,12 +121,6 @@ class ViewController: NSViewController {
         } catch {
             print("damn, didn't work")
         }
-        
-        
-        
-        
-        
-        
     }
     
     
@@ -145,20 +139,6 @@ class ViewController: NSViewController {
                 self.tableView.reloadData()
             }
             
-            /*
-            for(lightNumber, lightInfo) in lights{
-                print(lightNumber + "  " + lightInfo.name)
-                
-            }
-            
-            
-            
-             * swiftyjson parsing example
-            if let dataFromString = jsonResult.data(using: .utf8, allowLossyConversion: false){
-                let json = try! JSON(data: dataFromString)
-                print(json)
-            }
-            */
         })
     }
     
@@ -166,14 +146,14 @@ class ViewController: NSViewController {
     @IBAction func startColorWheel(_ sender: NSButton) {
         _colorWheel = ColorWheel()
         
-        //colorWheel.SetInitialWheelPosition()
+        _colorWheel?.SetInitialWheelPosition()
         
-        _colorWheel?.Rotate()
+        _colorWheel?.Start(interval: 4.0)
         
     }
     
     @IBAction func stopColorWheel(_ sender: NSButton) {
-        _colorWheel?.StopRotation()
+        _colorWheel?.Stop()
     }
     
     
