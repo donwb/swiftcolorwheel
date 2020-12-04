@@ -160,6 +160,15 @@ class ViewController: NSViewController {
         })
     }
     
+    
+    @IBAction func startColorWheel(_ sender: NSButton) {
+        let colorWheel = ColorWheel()
+        
+        colorWheel.SetInitialWheelPosition()
+    }
+    
+    
+    
     func getLightsInfo(urlComps: URLComponents, completion:@escaping ([String:LightsInfo]?, Error?) -> Void) {
         let session = URLSession.shared
         
