@@ -12,15 +12,16 @@ import SwiftyJSON
 
 class ViewController: NSViewController {
 
+    // MARK: - Controls
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var textLightNumber: NSTextField!
     @IBOutlet weak var nameLabel: NSTextField!
     @IBOutlet weak var stateLabel: NSTextField!
     @IBOutlet weak var hueLabel: NSTextField!
-    
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var stopButton: NSButton!
     
+    // MARK: - Private members
     var lights: [String?: LightsInfo] = [:]
     var selectedLight: String = ""
     var hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
