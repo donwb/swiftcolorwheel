@@ -758,7 +758,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="lightIDCell" id="Oly-sh-wzd">
-                                                            <rect key="frame" x="8" y="0.0" width="114" height="24"/>
+                                                            <rect key="frame" x="18" y="0.0" width="114" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="07e-bA-nc1">
@@ -790,7 +790,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="lightDetailCell" id="PbM-lI-Ls2">
-                                                            <rect key="frame" x="139" y="0.0" width="312" height="24"/>
+                                                            <rect key="frame" x="149" y="0.0" width="312" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kxQ-sI-T7J">
@@ -814,7 +814,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Hh9-uc-2zt">
-                                    <rect key="frame" x="1" y="235" width="460" height="15"/>
+                                    <rect key="frame" x="1" y="234" width="460" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5hF-GZ-o4s">
@@ -878,7 +878,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2jq-sM-CPv">
                                 <rect key="frame" x="321" y="7" width="140" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Stop Color Wheel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bhg-ry-D8g">
+                                <buttonCell key="cell" type="push" title="Stop Color Wheel" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bhg-ry-D8g">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -891,7 +891,9 @@
                     <connections>
                         <outlet property="hueLabel" destination="JlC-lL-8yI" id="aIE-6R-kUW"/>
                         <outlet property="nameLabel" destination="ia9-Yr-za5" id="xod-Rf-Pip"/>
+                        <outlet property="startButton" destination="SmQ-WF-8gL" id="Qmg-wB-SRt"/>
                         <outlet property="stateLabel" destination="Re5-zR-m68" id="9EH-pK-Nbc"/>
+                        <outlet property="stopButton" destination="2jq-sM-CPv" id="g10-TW-C6d"/>
                         <outlet property="tableView" destination="QsI-7A-HMx" id="TTh-l8-O5G"/>
                     </connections>
                 </viewController>

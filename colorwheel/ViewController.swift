@@ -18,6 +18,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var stateLabel: NSTextField!
     @IBOutlet weak var hueLabel: NSTextField!
     
+    @IBOutlet weak var startButton: NSButton!
+    @IBOutlet weak var stopButton: NSButton!
     
     var lights: [String?: LightsInfo] = [:]
     var selectedLight: String = ""
@@ -53,6 +55,7 @@ class ViewController: NSViewController {
         
     }
 
+    // MARK: - Button Click events
 
     @IBAction func lightInfoClicked(_ sender: NSButton) {
         
@@ -150,12 +153,20 @@ class ViewController: NSViewController {
         
         _colorWheel?.Start(interval: 4.0)
         
+        self.startButton.isEnabled = false
+        self.stopButton.isEnabled = true
+        
+        
     }
     
     @IBAction func stopColorWheel(_ sender: NSButton) {
         _colorWheel?.Stop()
+        self.startButton.isEnabled = true
+        self.stopButton.isEnabled = false
     }
     
+    
+    // MARK: - functions
     
     func getLightsInfo(urlComps: URLComponents, completion:@escaping ([String:LightsInfo]?, Error?) -> Void) {
         let session = URLSession.shared
