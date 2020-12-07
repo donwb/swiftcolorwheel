@@ -57,90 +57,40 @@ class ColorWheel {
         let orange = makeColorLightRequest(color: .orange, primary: true, light: .fan2)
         let red = makeColorLightRequest(color: .red, primary: false, light: .sixties)
         
-        InvokeLights(blue!, green!, orange!, red!)
+        //InvokeLights(blue!, green!, orange!, red!)
+        let requests = [blue!, green!, orange!, red!]
+        InvokeRequests(requests: requests)
     
     }
     
     // MARK: - private methods
     
     //https://stackoverflow.com/questions/50557431/how-to-do-two-concurrent-api-calls-in-swift-4
-    fileprivate func InvokeLights(_ requestLightOne: URLRequest, _ requestLightTwo: URLRequest, _ requestLightThree: URLRequest, _ requestLightFour: URLRequest) {
+    fileprivate func InvokeRequests(requests: [URLRequest]) -> Void {
         let dispatchGroup = DispatchGroup()
         
-        dispatchGroup.enter()
-        
-        
-        URLSession.shared.dataTask(with: requestLightOne) {data, response, error in
-            
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "no data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String:Any]{
-                print(responseJSON)
-            }
-            print("here Blue")
-            DispatchQueue.main.async {
-                dispatchGroup.leave()
-            }
-        }.resume()
-        
-        dispatchGroup.enter()
-        URLSession.shared.dataTask(with: requestLightTwo) {data, response, error in
-            //sleep(1)
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "no data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String:Any]{
-                print(responseJSON)
-            }
-            print("here green")
-            DispatchQueue.main.async {
-                dispatchGroup.leave()
-            }
-        }.resume()
-        
-        dispatchGroup.enter()
-        URLSession.shared.dataTask(with: requestLightThree) {data, response, error in
-            //sleep(1)
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "no data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String:Any]{
-                print(responseJSON)
-            }
-            print("here green")
-            DispatchQueue.main.async {
-                dispatchGroup.leave()
-            }
-        }.resume()
-        
-        dispatchGroup.enter()
-        URLSession.shared.dataTask(with: requestLightFour) {data, response, error in
-            //sleep(1)
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "no data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String:Any]{
-                print(responseJSON)
-            }
-            print("here green")
-            DispatchQueue.main.async {
-                dispatchGroup.leave()
-            }
-        }.resume()
-        
+        for r in requests {
+            dispatchGroup.enter()
+            URLSession.shared.dataTask(with: r) {data, response, error in
+                
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "no data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String:Any]{
+                    print(responseJSON)
+                }
+                DispatchQueue.main.async {
+                    dispatchGroup.leave()
+                }
+            }.resume()
+        }
         
         dispatchGroup.notify(queue: .main){
             print("I'm done with the dispatch group")
         }
+        
     }
     
     fileprivate func makeColorLightRequest(color: ColorEnum, primary: Bool, light: WheelLights) -> URLRequest? {
@@ -191,7 +141,9 @@ class ColorWheel {
         orange = makeColorLightRequest(color: .orange, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
         red = makeColorLightRequest(color: .red, primary: officeLights[colorSet[3]] == WheelLights.fan2, light: officeLights[colorSet[3]])
         
-        InvokeLights(blue!, green!, orange!, red!)
+        //InvokeLights(blue!, green!, orange!, red!)
+        let requests = [blue!, green!, orange!, red!]
+        InvokeRequests(requests: requests)
         
         //_currentLight = _currentLight < 3 ? _currentLight += 1 : _currentLight = 0
         if _currentLight < 3 {
