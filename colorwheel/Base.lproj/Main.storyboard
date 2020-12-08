@@ -688,7 +688,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="625" height="399"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="3008" height="1667"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
@@ -886,6 +886,15 @@
                                     <action selector="stopColorWheel:" target="XfG-lQ-9wD" id="ths-73-rTh"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZZS-5u-pNg">
+                                <rect key="frame" x="486" y="18" width="137" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="6gH-dF-0e4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -895,11 +904,12 @@
                         <outlet property="stateLabel" destination="Re5-zR-m68" id="9EH-pK-Nbc"/>
                         <outlet property="stopButton" destination="2jq-sM-CPv" id="g10-TW-C6d"/>
                         <outlet property="tableView" destination="QsI-7A-HMx" id="TTh-l8-O5G"/>
+                        <outlet property="wheelStateInfo" destination="ZZS-5u-pNg" id="wdk-T8-8Tr"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="156" y="898"/>
+            <point key="canvasLocation" x="155.5" y="897.5"/>
         </scene>
     </scenes>
 </document>

@@ -14,6 +14,9 @@ class ColorWheel {
     private let _hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     private var _timer: Timer?
     private var _currentLight = 0
+    private var _wheelState = WheelState.idle
+    
+    //private var _listeners: [WheelStateChangeListener] = []
     
     // MARK: - enums
     enum WheelLights: String {
@@ -30,7 +33,22 @@ class ColorWheel {
         case red = 0
     }
 
+
+    //ColorPickerNotification = "com.codepath.ColorPickerViewController.didPickColor"
+    let WheelStartNotification = "com.donwb.WheelStart.started"
+    
     // MARK:  - public methods
+    
+   
+    
+    /*func addListener(_ listener: WheelStateChangeListener) {
+        
+        for l in _listeners {
+            if l.id == listener.id {return}
+        }
+        
+        _listeners.append(listener)
+    }*/
     
     func GetColorState(primary: Bool, color: ColorEnum) -> State {
         var s = State()
@@ -45,10 +63,23 @@ class ColorWheel {
    
     func Start(interval: Double) -> Void {
         _timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        _wheelState = WheelState.running
+        
+        //_listeners.forEach({ $0.WheelStateDidChange(isRunning: true)})
+        
+        let ws = ["state": "on"]
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
     func Stop() -> Void {
         _timer?.invalidate()
+        _wheelState = WheelState.idle
+        
+        //_listeners.forEach({ $0.WheelStateDidChange(isRunning: false)})
+        let ws = ["state": "off"]
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
     func SetInitialWheelPosition() -> Void {
@@ -175,3 +206,50 @@ class ColorWheel {
     }
 }
 
+private extension ColorWheel{
+   enum WheelState {
+        //case idle(Info)
+        case idle
+        //case running(Info)
+        case running
+   }
+}
+
+extension Notification.Name {
+    static var wheelStarted: Notification.Name {
+        return .init(rawValue: "Wheel.Running")
+    }
+
+    static var wheelStopped: Notification.Name {
+        return .init(rawValue: "Wheel.Idle")
+    }
+
+}
+/*
+private extension ColorWheel {
+    func stateDidChange() {
+        switch _wheelState {
+        case .idle:
+            _notificationCenter.post(name: .wheelStopped, object: "Info")
+        case .running:
+            _notificationCenter.post(name: .wheelStopped, object: "I'm runnign now")
+        }
+    }
+}
+
+@objc protocol WheelStateChangeListener : AnyObject {
+    func WheelStateDidChange(isRunning: Bool)
+    var id: String {get set}
+}
+
+
+class WheelListener : WheelStateChangeListener {
+    var id = UUID().uuidString
+    
+    func WheelStateDidChange(isRunning: Bool) {
+        print("The wheel is running")
+    }
+    
+    
+}
+*/

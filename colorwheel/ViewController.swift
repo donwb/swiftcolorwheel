@@ -21,6 +21,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var stopButton: NSButton!
     
+    @IBOutlet weak var wheelStateInfo: NSTextField!
+    
+    
     // MARK: - Private members
     var lights: [String?: LightsInfo] = [:]
     var selectedLight: String = ""
@@ -33,6 +36,8 @@ class ViewController: NSViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(wheelStartedSimple), name: Notification.Name(rawValue: "com.donwb.WheelStart.stateChange"), object: nil)
     }
 
     override func viewWillAppear() {
@@ -148,6 +153,7 @@ class ViewController: NSViewController {
     
     
     @IBAction func startColorWheel(_ sender: NSButton) {
+        //_colorWheel = ColorWheel.init(notificationCenter: .default)
         _colorWheel = ColorWheel()
         
         _colorWheel?.SetInitialWheelPosition()
@@ -156,6 +162,10 @@ class ViewController: NSViewController {
         
         self.startButton.isEnabled = false
         self.stopButton.isEnabled = true
+        
+        //let wsc = WheelListener()
+        
+        //_colorWheel?.addListener(wsc)
         
         
     }
@@ -168,6 +178,10 @@ class ViewController: NSViewController {
     
     
     // MARK: - functions
+    
+    func respondToWheelState() {
+        print("i'm responding")
+    }
     
     func getLightsInfo(urlComps: URLComponents, completion:@escaping ([String:LightsInfo]?, Error?) -> Void) {
         let session = URLSession.shared
@@ -211,6 +225,24 @@ class ViewController: NSViewController {
             }
             
         }.resume()
+    }
+    
+    @objc private func wheelStarted(_ notification: Notification){
+        guard let item = notification.object as? String else {
+            let object = notification.object as Any
+                assertionFailure("Invalid object: \(object)")
+            return
+        }
+        wheelStateInfo.stringValue = item
+    }
+    
+    @objc private func wheelStartedSimple(_ notification: Notification) {
+        let stateinfo = notification.userInfo?["state"]
+        
+        let msg = stateinfo! as! String
+        print("The message: ", msg)
+        
+        self.wheelStateInfo.stringValue = "The Wheel is: " + msg
     }
 }
 
