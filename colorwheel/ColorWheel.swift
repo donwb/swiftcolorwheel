@@ -36,6 +36,7 @@ class ColorWheel {
 
     //ColorPickerNotification = "com.codepath.ColorPickerViewController.didPickColor"
     let WheelStartNotification = "com.donwb.WheelStart.started"
+    let WheelPositionChanged = "com.donwb.WheelPosition.changed"
     
     // MARK:  - public methods
     
@@ -160,6 +161,10 @@ class ColorWheel {
         // The colorset is the way the lights rotate
         
         let colorSet = colorPosition(idx: _currentLight)
+        
+        let ws = ["position": colorSet]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:WheelPositionChanged), object: nil, userInfo: ws)
+        
         var blue: URLRequest?
         var green: URLRequest?
         var orange: URLRequest?

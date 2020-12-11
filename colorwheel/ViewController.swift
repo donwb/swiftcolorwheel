@@ -23,6 +23,11 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var wheelStateInfo: NSTextField!
     
+    @IBOutlet weak var colorStackView: NSStackView!
+    @IBOutlet weak var color0: NSColorWell!
+    @IBOutlet weak var color1: NSColorWell!
+    @IBOutlet weak var color2: NSColorWell!
+    @IBOutlet weak var color3: NSColorWell!
     
     // MARK: - Private members
     var lights: [String?: LightsInfo] = [:]
@@ -38,6 +43,8 @@ class ViewController: NSViewController {
         tableView.dataSource = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(wheelStartedSimple), name: Notification.Name(rawValue: "com.donwb.WheelStart.stateChange"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(wheelChangedPosition), name: Notification.Name(rawValue: "com.donwb.WheelPosition.changed"), object: nil)
     }
 
     override func viewWillAppear() {
@@ -243,6 +250,45 @@ class ViewController: NSViewController {
         print("The message: ", msg)
         
         self.wheelStateInfo.stringValue = "The Wheel is: " + msg
+    }
+    
+    @objc private func wheelChangedPosition(notification: Notification) {
+        // blue, green, orange, red
+        
+        // I know this is a seriously leaked abstraction
+        // [0, 1, 2, 3]
+        // [1, 2, 3, 0]
+        // [2, 3, 0, 1]
+        // [3, 0, 1, 2]
+        
+        let changeInfo = notification.userInfo?["position"]
+        
+        guard let positionArray = changeInfo as? [Int] else {
+            print("shit...")
+            return
+        }
+        
+        let blueIndex = positionArray.firstIndex(of: 0)
+        let greenIndex = positionArray.firstIndex(of: 1)
+        let orangeIndex = positionArray.firstIndex(of: 2)
+        let redIndex = positionArray.firstIndex(of: 3)
+        
+        let blue = colorStackView.viewWithTag(blueIndex!)
+        let green = colorStackView.viewWithTag(greenIndex!)
+        let orange = colorStackView.viewWithTag(orangeIndex!)
+        let red = colorStackView.viewWithTag(redIndex!)
+        
+        guard let blueWell = blue as? NSColorWell else { return }
+        blueWell.color = .blue
+        
+        guard let greenWell = green as? NSColorWell else { return }
+        greenWell.color = .green
+        
+        guard let orangeWell = orange as? NSColorWell else { return }
+        orangeWell.color = .orange
+        
+        guard let redWell = red as? NSColorWell else { return }
+        redWell.color = .red
     }
 }
 
