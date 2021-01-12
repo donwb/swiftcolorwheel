@@ -87,7 +87,8 @@ class ViewController: NSViewController {
             DispatchQueue.main.async {
                 let nameLabel = "Name: " + (lightDetail?.name != nil ? lightDetail!.name : "none")
                 let stateLabel = "State: " + (lightDetail?.state != nil ? String(lightDetail!.state.on): "unk")
-                let hueLabel = "Hue: " + (lightDetail?.state.hue! != nil ? String(lightDetail!.state.hue!) : "unk")
+                let hueLabel = "Hue: " + (lightDetail?.state.hue != nil ? String(lightDetail!.state.hue!) : "unk")
+                
                 
                 self.nameLabel.stringValue = nameLabel
                 self.stateLabel.stringValue = stateLabel
