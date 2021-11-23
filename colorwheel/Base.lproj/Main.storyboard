@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -758,7 +759,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="lightIDCell" id="Oly-sh-wzd">
-                                                            <rect key="frame" x="18" y="0.0" width="114" height="24"/>
+                                                            <rect key="frame" x="8" y="0.0" width="114" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="07e-bA-nc1">
@@ -794,7 +795,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="lightDetailCell" id="PbM-lI-Ls2">
-                                                            <rect key="frame" x="149" y="0.0" width="312" height="24"/>
+                                                            <rect key="frame" x="139" y="0.0" width="312" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kxQ-sI-T7J">
@@ -822,7 +823,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Hh9-uc-2zt">
-                                    <rect key="frame" x="1" y="234" width="460" height="16"/>
+                                    <rect key="frame" x="1" y="235" width="460" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5hF-GZ-o4s">
@@ -835,7 +836,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7wO-rW-CS1">
-                                <rect key="frame" x="2" y="187" width="145" height="32"/>
+                                <rect key="frame" x="2" y="229" width="145" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Toggle Light State" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2eF-AV-bu5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -948,6 +949,37 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9DH-Bd-vBn">
+                                <rect key="frame" x="2" y="187" width="145" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Start Single" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fSU-dZ-hl7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="StartSingleLight:" target="XfG-lQ-9wD" id="t2y-cJ-lcS"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JX7-8M-L1J">
+                                <rect key="frame" x="2" y="161" width="145" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Stop Single" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BaM-td-o1A">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="StopSingleLight:" target="XfG-lQ-9wD" id="a57-RD-32o"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xoz-gm-V3r">
+                                <rect key="frame" x="7" y="144" width="146" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Single Wheel: Off" id="Yob-gB-nLR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yJu-Tn-wwS" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="2Eo-gF-nWH"/>
@@ -964,9 +996,12 @@
                         <outlet property="colorStackView" destination="yJu-Tn-wwS" id="uTK-h1-vIr"/>
                         <outlet property="hueLabel" destination="JlC-lL-8yI" id="aIE-6R-kUW"/>
                         <outlet property="nameLabel" destination="ia9-Yr-za5" id="xod-Rf-Pip"/>
+                        <outlet property="singleWheelStateInfo" destination="Xoz-gm-V3r" id="2fB-rq-ouP"/>
                         <outlet property="startButton" destination="SmQ-WF-8gL" id="Qmg-wB-SRt"/>
+                        <outlet property="startSingleButton" destination="9DH-Bd-vBn" id="WvL-px-5AN"/>
                         <outlet property="stateLabel" destination="Re5-zR-m68" id="9EH-pK-Nbc"/>
                         <outlet property="stopButton" destination="2jq-sM-CPv" id="g10-TW-C6d"/>
+                        <outlet property="stopSingleButton" destination="JX7-8M-L1J" id="7ob-Ew-MGI"/>
                         <outlet property="tableView" destination="QsI-7A-HMx" id="TTh-l8-O5G"/>
                         <outlet property="wheelStateInfo" destination="ZZS-5u-pNg" id="wdk-T8-8Tr"/>
                     </connections>

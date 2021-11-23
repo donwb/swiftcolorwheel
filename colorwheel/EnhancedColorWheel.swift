@@ -8,25 +8,23 @@
 import Foundation
 
 
-class ColorWheel {
+class EnhancedColorWheel {
 
     // MARK: - private members
     private let _hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     private var _timer: Timer?
-    private var _currentLight = 0
+    private var _activeLightIndex = 0
     private var _wheelState = WheelState.idle
+    private var _startColor = ValidWheelColors.blue
+    private var _theOnlyLight: String
     
     //private var _listeners: [WheelStateChangeListener] = []
     
-    // MARK: - enums
-    enum WheelLights: String {
-        //case fan1 = "14"
-        case fan2 = "15"
-        case sixties = "5"
-        case desk = "1"
+
+    init(lightNumber: String) {
+        self._theOnlyLight = lightNumber
     }
-    
-    enum ColorEnum: Int {
+    enum ValidWheelColors: Int {
         case blue = 47104
         case orange = 2645
         case green = 25600
@@ -51,11 +49,23 @@ class ColorWheel {
         _listeners.append(listener)
     }*/
     
-    func GetColorState(primary: Bool, color: ColorEnum) -> State {
+    func GetColorState(primary: Bool, color: ValidWheelColors) -> State {
         var s = State()
         s.on = true
         s.sat = 254
         s.bri = (primary ? 254 : 120)
+        
+        s.hue = color.rawValue
+        
+        return s
+    }
+    
+    func GetColorState(color: ValidWheelColors) -> State {
+        var s = State()
+        s.on = true
+        s.sat = 254
+        //s.bri = (primary ? 254 : 120)
+        s.bri = 254
         
         s.hue = color.rawValue
         
@@ -70,7 +80,7 @@ class ColorWheel {
         
         let ws = ["state": "on"]
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.SingleWheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
     func Stop() -> Void {
@@ -80,20 +90,14 @@ class ColorWheel {
         //_listeners.forEach({ $0.WheelStateDidChange(isRunning: false)})
         let ws = ["state": "off"]
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.SingleWheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
-    func SetInitialWheelPosition() -> Void {
-        let blue = makeColorLightRequest(color: .blue, primary: false, light: .desk)
-        let green = makeColorLightRequest(color: .green, primary: false, light: .fan2)
-        //let orange = makeColorLightRequest(color: .orange, primary: true, light: .fan2)
-        let red = makeColorLightRequest(color: .red, primary: false, light: .sixties)
-        
-        //InvokeLights(blue!, green!, orange!, red!)
-        //let requests = [blue!, green!, orange!, red!]
-        let requests = [blue!, green!, red!]
+    func SetInitialWheelState() -> Void {
+        let green = makeColorLightRequest(color: .green)
+        let requests = [green!]
         InvokeRequests(requests: requests)
-    
+        
     }
     
     // MARK: - private methods
@@ -126,17 +130,18 @@ class ColorWheel {
         
     }
     
-    fileprivate func makeColorLightRequest(color: ColorEnum, primary: Bool, light: WheelLights) -> URLRequest? {
+    fileprivate func makeColorLightRequest(color: ValidWheelColors) -> URLRequest? {
         let hc = HueConnection(username: _hueUsername)
         
-        let cw = ColorWheel()
-        let clr = cw.GetColorState(primary: primary, color: color)
+        let cw = EnhancedColorWheel(lightNumber: self._theOnlyLight)
+        //let clr = cw.GetColorState(primary: 0, color: color)
+        let clr = cw.GetColorState(color: color)
 
         do {
             let jsonEncoder = JSONEncoder()
             let jsonData = try jsonEncoder.encode(clr)
             
-            let urlComps = hc.GetLightState(lightNumber: light.rawValue)
+            let urlComps = hc.GetLightState(lightNumber: _theOnlyLight)
             var request = URLRequest(url: urlComps!.url!)
             request.httpMethod = "PUT"
             request.httpBody = jsonData
@@ -154,40 +159,32 @@ class ColorWheel {
     
     @objc func fireTimer() {
         print("timer fired")
-        
-        // there are 4 colors, which rotate amongst 4 different lights
-        // the colors are fixed, and the lights rotate via the index
-        // that is set by the timer firing.
-        // the primary light is always "fan2"
+        /*
+         In this case there is only one light, but there are an array of colors to loop through
+         so I need an array of the valid light colors, and each request will iterate
+         through that and create a LightRequest
+         */
         // The colorset is the way the lights rotate
         
-        let colorSet = colorPosition(idx: _currentLight)
+        let validColors = [ValidWheelColors.blue, ValidWheelColors.green, ValidWheelColors.orange, ValidWheelColors.red]
         
-        let ws = ["position": colorSet]
+        let activeColor = validColors[_activeLightIndex]
+        
+        print("Idx \(_activeLightIndex) is color \(activeColor)")
+        
+        
+
+        let ws = ["position": _activeLightIndex]
         NotificationCenter.default.post(name: NSNotification.Name(rawValue:WheelPositionChanged), object: nil, userInfo: ws)
-        
-        var blue: URLRequest?
-        var green: URLRequest?
-        //var orange: URLRequest?
-        var red: URLRequest?
-        let officeLights = [WheelLights.fan2, WheelLights.fan2, WheelLights.sixties, WheelLights.desk]
-        
-        
-        blue = makeColorLightRequest(color: .blue, primary: (officeLights[colorSet[0]] == WheelLights.fan2), light: officeLights[colorSet[0]])
-        green = makeColorLightRequest(color: .green, primary: officeLights[colorSet[1]] == WheelLights.fan2, light: officeLights[colorSet[1]])
-        //orange = makeColorLightRequest(color: .orange, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
-        red = makeColorLightRequest(color: .red, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
-        
-        //InvokeLights(blue!, green!, orange!, red!)
-        //let requests = [blue!, green!, orange!, red!]
-        let requests = [blue!, green!, red!]
+  
+        var colorRequest = makeColorLightRequest(color: activeColor)
+        let requests = [colorRequest!]
         InvokeRequests(requests: requests)
-        
-        //_currentLight = _currentLight < 3 ? _currentLight += 1 : _currentLight = 0
-        if _currentLight < 2 {
-            _currentLight += 1
+
+        if _activeLightIndex < 3 {
+            _activeLightIndex += 1
         } else {
-            _currentLight = 0
+            _activeLightIndex = 0
         }
         
         
@@ -197,33 +194,23 @@ class ColorWheel {
         // i'm sure there's a better way, but this simulates the
         // roatation of the wheel, moving the slots one to the left
         
-//        switch idx {
-//        case 0:
-//            return [0, 1, 2, 3]
-//        case 1:
-//            return [1, 2, 3, 0]
-//        case 2:
-//            return [2, 3, 0, 1]
-//        case 3:
-//            return [3, 0, 1, 2]
-//        default:
-//            return [0, 1, 2, 3]
-//        }
         switch idx {
         case 0:
-            return [0, 1, 2]
+            return [0, 1, 2, 3]
         case 1:
-            return [1, 2, 0]
+            return [1, 2, 3, 0]
         case 2:
-            return [2, 0, 1]
+            return [2, 3, 0, 1]
+        case 3:
+            return [3, 0, 1, 2]
         default:
-            return [0, 1, 2]
+            return [0, 1, 2, 3]
         }
         
     }
 }
 
-private extension ColorWheel{
+private extension EnhancedColorWheel{
    enum WheelState {
         //case idle(Info)
         case idle
@@ -233,12 +220,12 @@ private extension ColorWheel{
 }
 
 extension Notification.Name {
-    static var wheelStarted: Notification.Name {
-        return .init(rawValue: "Wheel.Running")
+    static var enhancedWheelStarted: Notification.Name {
+        return .init(rawValue: "SingleWheel.Running")
     }
 
-    static var wheelStopped: Notification.Name {
-        return .init(rawValue: "Wheel.Idle")
+    static var enhancedWheelStopped: Notification.Name {
+        return .init(rawValue: "SingleWheel.Idle")
     }
 
 }
@@ -270,3 +257,9 @@ class WheelListener : WheelStateChangeListener {
     
 }
 */
+//
+//  EnhancedColorWheel.swift
+//  colorwheel
+//
+//  Created by Don Browning on 11/23/21.
+//
