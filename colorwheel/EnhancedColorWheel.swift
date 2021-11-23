@@ -13,7 +13,7 @@ class EnhancedColorWheel {
     // MARK: - private members
     private let _hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     private var _timer: Timer?
-    private var _currentLight = 0
+    private var _activeLightIndex = 0
     private var _wheelState = WheelState.idle
     private var _startColor = ValidWheelColors.blue
     private var _theOnlyLight: String
@@ -159,8 +159,6 @@ class EnhancedColorWheel {
     
     @objc func fireTimer() {
         print("timer fired")
-        
-        
         /*
          In this case there is only one light, but there are an array of colors to loop through
          so I need an array of the valid light colors, and each request will iterate
@@ -170,41 +168,23 @@ class EnhancedColorWheel {
         
         let validColors = [ValidWheelColors.blue, ValidWheelColors.green, ValidWheelColors.orange, ValidWheelColors.red]
         
-        let activeColor = validColors[_currentLight]
+        let activeColor = validColors[_activeLightIndex]
         
-        print("Idx \(_currentLight) is color \(activeColor)")
+        print("Idx \(_activeLightIndex) is color \(activeColor)")
         
         
-//
-//        let ws = ["position": colorSet]
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue:WheelPositionChanged), object: nil, userInfo: ws)
+
+        let ws = ["position": _activeLightIndex]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:WheelPositionChanged), object: nil, userInfo: ws)
   
         var colorRequest = makeColorLightRequest(color: activeColor)
         let requests = [colorRequest!]
         InvokeRequests(requests: requests)
-        
-//
-//        var blue: URLRequest?
-//        var green: URLRequest?
-//        var orange: URLRequest?
-//        var red: URLRequest?
-//        let officeLights = [WheelLights.fan2, WheelLights.fan1, WheelLights.sixties, WheelLights.desk]
-//
-//
-//        blue = makeColorLightRequest(color: .blue, primary: (officeLights[colorSet[0]] == WheelLights.fan2), light: officeLights[colorSet[0]])
-//        green = makeColorLightRequest(color: .green, primary: officeLights[colorSet[1]] == WheelLights.fan2, light: officeLights[colorSet[1]])
-//        orange = makeColorLightRequest(color: .orange, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
-//        red = makeColorLightRequest(color: .red, primary: officeLights[colorSet[3]] == WheelLights.fan2, light: officeLights[colorSet[3]])
-//
-//        //InvokeLights(blue!, green!, orange!, red!)
-//        let requests = [blue!, green!, orange!, red!]
-//        InvokeRequests(requests: requests)
-//
-        //_currentLight = _currentLight < 3 ? _currentLight += 1 : _currentLight = 0
-        if _currentLight < 3 {
-            _currentLight += 1
+
+        if _activeLightIndex < 3 {
+            _activeLightIndex += 1
         } else {
-            _currentLight = 0
+            _activeLightIndex = 0
         }
         
         
