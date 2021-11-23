@@ -21,6 +21,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var stopButton: NSButton!
     
+    @IBOutlet weak var startSingleButton: NSButton!
+    @IBOutlet weak var stopSingleButton: NSButton!
+    
+    @IBOutlet weak var singleWheelStateInfo: NSTextField!
     @IBOutlet weak var wheelStateInfo: NSTextField!
     
     @IBOutlet weak var colorStackView: NSStackView!
@@ -47,6 +51,12 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(wheelStartedSimple), name: Notification.Name(rawValue: "com.donwb.WheelStart.stateChange"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(wheelChangedPosition), name: Notification.Name(rawValue: "com.donwb.WheelPosition.changed"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(singleWheelStarted), name: Notification.Name(rawValue: "com.donwb.SingleWheelStart.stateChange"), object: nil)
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(wheelChangedPosition), name: Notification.Name(rawValue: "com.donwb.SingleWheelPosition.changed"), object: nil)
+        
+        
     }
 
     override func viewWillAppear() {
@@ -187,19 +197,34 @@ class ViewController: NSViewController {
     }
     
     @IBAction func StartSingleLight(_ sender: NSButton) {
-        print("ok, here we go!")
+        
+        if self.selectedLight == "" { return }
+        
+        print("Starting single light...")
         
         let lightNumber = self.selectedLight
         print(lightNumber)
         
-        let _enhancedWheel = EnhancedColorWheel(lightNumber: lightNumber)
-        _enhancedWheel.SetInitialWheelState()
+        _enhancedWheel = EnhancedColorWheel(lightNumber: lightNumber)
+        _enhancedWheel?.SetInitialWheelState()
         
-        _enhancedWheel.Start(interval: 4.0)
+        _enhancedWheel?.Start(interval: 4.0)
         
-        
+        self.stopSingleButton.isEnabled = true
+        self.startSingleButton.isEnabled = false
+    
         
     }
+    
+    
+    @IBAction func StopSingleLight(_ sender: NSButton) {
+        print("stopping.....")
+        
+        _enhancedWheel?.Stop()
+        self.stopSingleButton.isEnabled = false
+        self.startSingleButton.isEnabled = true
+    }
+    
     
     // MARK: - functions
     
@@ -306,6 +331,15 @@ class ViewController: NSViewController {
         
 //        guard let redWell = red as? NSColorWell else { return }
 //        redWell.color = .red
+    }
+    
+    @objc private func singleWheelStarted(_ notification: Notification) {
+        let stateinfo = notification.userInfo?["state"]
+        
+        let msg = stateinfo! as! String
+        print("The message: ", msg)
+        
+        self.singleWheelStateInfo.stringValue = "Single Wheel: " + msg.uppercased()
     }
 }
 

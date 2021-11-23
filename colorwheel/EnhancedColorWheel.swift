@@ -80,7 +80,7 @@ class EnhancedColorWheel {
         
         let ws = ["state": "on"]
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.SingleWheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
     func Stop() -> Void {
@@ -90,7 +90,7 @@ class EnhancedColorWheel {
         //_listeners.forEach({ $0.WheelStateDidChange(isRunning: false)})
         let ws = ["state": "off"]
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.WheelStart.stateChange"), object: nil, userInfo: ws)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue:"com.donwb.SingleWheelStart.stateChange"), object: nil, userInfo: ws)
     }
     
     func SetInitialWheelState() -> Void {
@@ -221,11 +221,11 @@ private extension EnhancedColorWheel{
 
 extension Notification.Name {
     static var enhancedWheelStarted: Notification.Name {
-        return .init(rawValue: "Wheel.Running")
+        return .init(rawValue: "SingleWheel.Running")
     }
 
     static var enhancedWheelStopped: Notification.Name {
-        return .init(rawValue: "Wheel.Idle")
+        return .init(rawValue: "SingleWheel.Idle")
     }
 
 }
