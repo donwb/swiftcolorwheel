@@ -20,7 +20,7 @@ class ColorWheel {
     
     // MARK: - enums
     enum WheelLights: String {
-        case fan1 = "14"
+        //case fan1 = "14"
         case fan2 = "15"
         case sixties = "5"
         case desk = "1"
@@ -85,12 +85,13 @@ class ColorWheel {
     
     func SetInitialWheelPosition() -> Void {
         let blue = makeColorLightRequest(color: .blue, primary: false, light: .desk)
-        let green = makeColorLightRequest(color: .green, primary: false, light: .fan1)
-        let orange = makeColorLightRequest(color: .orange, primary: true, light: .fan2)
+        let green = makeColorLightRequest(color: .green, primary: false, light: .fan2)
+        //let orange = makeColorLightRequest(color: .orange, primary: true, light: .fan2)
         let red = makeColorLightRequest(color: .red, primary: false, light: .sixties)
         
         //InvokeLights(blue!, green!, orange!, red!)
-        let requests = [blue!, green!, orange!, red!]
+        //let requests = [blue!, green!, orange!, red!]
+        let requests = [blue!, green!, red!]
         InvokeRequests(requests: requests)
     
     }
@@ -167,22 +168,23 @@ class ColorWheel {
         
         var blue: URLRequest?
         var green: URLRequest?
-        var orange: URLRequest?
+        //var orange: URLRequest?
         var red: URLRequest?
-        let officeLights = [WheelLights.fan2, WheelLights.fan1, WheelLights.sixties, WheelLights.desk]
+        let officeLights = [WheelLights.fan2, WheelLights.fan2, WheelLights.sixties, WheelLights.desk]
         
         
         blue = makeColorLightRequest(color: .blue, primary: (officeLights[colorSet[0]] == WheelLights.fan2), light: officeLights[colorSet[0]])
         green = makeColorLightRequest(color: .green, primary: officeLights[colorSet[1]] == WheelLights.fan2, light: officeLights[colorSet[1]])
-        orange = makeColorLightRequest(color: .orange, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
-        red = makeColorLightRequest(color: .red, primary: officeLights[colorSet[3]] == WheelLights.fan2, light: officeLights[colorSet[3]])
+        //orange = makeColorLightRequest(color: .orange, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
+        red = makeColorLightRequest(color: .red, primary: officeLights[colorSet[2]] == WheelLights.fan2, light: officeLights[colorSet[2]])
         
         //InvokeLights(blue!, green!, orange!, red!)
-        let requests = [blue!, green!, orange!, red!]
+        //let requests = [blue!, green!, orange!, red!]
+        let requests = [blue!, green!, red!]
         InvokeRequests(requests: requests)
         
         //_currentLight = _currentLight < 3 ? _currentLight += 1 : _currentLight = 0
-        if _currentLight < 3 {
+        if _currentLight < 2 {
             _currentLight += 1
         } else {
             _currentLight = 0
@@ -195,17 +197,27 @@ class ColorWheel {
         // i'm sure there's a better way, but this simulates the
         // roatation of the wheel, moving the slots one to the left
         
+//        switch idx {
+//        case 0:
+//            return [0, 1, 2, 3]
+//        case 1:
+//            return [1, 2, 3, 0]
+//        case 2:
+//            return [2, 3, 0, 1]
+//        case 3:
+//            return [3, 0, 1, 2]
+//        default:
+//            return [0, 1, 2, 3]
+//        }
         switch idx {
         case 0:
-            return [0, 1, 2, 3]
+            return [0, 1, 2]
         case 1:
-            return [1, 2, 3, 0]
+            return [1, 2, 0]
         case 2:
-            return [2, 3, 0, 1]
-        case 3:
-            return [3, 0, 1, 2]
+            return [2, 0, 1]
         default:
-            return [0, 1, 2, 3]
+            return [0, 1, 2]
         }
         
     }

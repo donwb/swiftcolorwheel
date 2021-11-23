@@ -288,12 +288,12 @@ class ViewController: NSViewController {
         let blueIndex = positionArray.firstIndex(of: 0)
         let greenIndex = positionArray.firstIndex(of: 1)
         let orangeIndex = positionArray.firstIndex(of: 2)
-        let redIndex = positionArray.firstIndex(of: 3)
+        //let redIndex = positionArray.firstIndex(of: 3)
         
         let blue = colorStackView.viewWithTag(blueIndex!)
         let green = colorStackView.viewWithTag(greenIndex!)
         let orange = colorStackView.viewWithTag(orangeIndex!)
-        let red = colorStackView.viewWithTag(redIndex!)
+        //let red = colorStackView.viewWithTag(redIndex!)
         
         guard let blueWell = blue as? NSColorWell else { return }
         blueWell.color = .blue
@@ -304,8 +304,8 @@ class ViewController: NSViewController {
         guard let orangeWell = orange as? NSColorWell else { return }
         orangeWell.color = .orange
         
-        guard let redWell = red as? NSColorWell else { return }
-        redWell.color = .red
+//        guard let redWell = red as? NSColorWell else { return }
+//        redWell.color = .red
     }
 }
 
