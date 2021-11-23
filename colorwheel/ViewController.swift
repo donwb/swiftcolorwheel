@@ -35,6 +35,8 @@ class ViewController: NSViewController {
     var hueUsername = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     
     var _colorWheel: ColorWheel?
+    var _enhancedWheel: EnhancedColorWheel?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,6 +186,20 @@ class ViewController: NSViewController {
         self.stopButton.isEnabled = false
     }
     
+    @IBAction func StartSingleLight(_ sender: NSButton) {
+        print("ok, here we go!")
+        
+        let lightNumber = self.selectedLight
+        print(lightNumber)
+        
+        let _enhancedWheel = EnhancedColorWheel(lightNumber: lightNumber)
+        _enhancedWheel.SetInitialWheelState()
+        
+        _enhancedWheel.Start(interval: 4.0)
+        
+        
+        
+    }
     
     // MARK: - functions
     
