@@ -79,6 +79,8 @@ struct Customsettings: Codable {
 enum StartupMode: String, Codable {
     case custom = "custom"
     case safety = "safety"
+    // Looks like there is a new option now called "powerfail"
+    case powerfail = "powerfail"
 }
 
 
