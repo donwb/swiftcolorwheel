@@ -15,7 +15,7 @@ class EnhancedColorWheel {
     private var _timer: Timer?
     private var _activeLightIndex = 0
     private var _wheelState = WheelState.idle
-    private var _startColor = ValidWheelColors.blue
+    private var _startColor = ValidWheelColors.gold
     private var _theOnlyLight: String
     
     //private var _listeners: [WheelStateChangeListener] = []
@@ -25,10 +25,16 @@ class EnhancedColorWheel {
         self._theOnlyLight = lightNumber
     }
     enum ValidWheelColors: Int {
-        case blue = 47104
+        case gold = 9426
         case orange = 2645
         case green = 25600
         case red = 0
+    }
+    
+    enum WheelBrightness: Int {
+        case dim = 50
+        case medium = 128
+        case bright = 245
     }
 
 
@@ -64,8 +70,8 @@ class EnhancedColorWheel {
         var s = State()
         s.on = true
         s.sat = 254
-        //s.bri = (primary ? 254 : 120)
-        s.bri = 254
+        // I'm in a hurry, but this should be passed in and configurable
+        s.bri = WheelBrightness.medium.rawValue
         
         s.hue = color.rawValue
         
@@ -166,7 +172,7 @@ class EnhancedColorWheel {
          */
         // The colorset is the way the lights rotate
         
-        let validColors = [ValidWheelColors.blue, ValidWheelColors.green, ValidWheelColors.orange, ValidWheelColors.red]
+        let validColors = [ValidWheelColors.gold, ValidWheelColors.green, ValidWheelColors.orange, ValidWheelColors.red]
         
         let activeColor = validColors[_activeLightIndex]
         
