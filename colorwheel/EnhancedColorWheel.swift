@@ -172,7 +172,7 @@ class EnhancedColorWheel {
          */
         // The colorset is the way the lights rotate
         
-        let validColors = [ValidWheelColors.gold, ValidWheelColors.red, ValidWheelColors.orange, ValidWheelColors.green]
+        let validColors = [ValidWheelColors.gold, ValidWheelColors.red, ValidWheelColors.green, ValidWheelColors.orange]
         
         let activeColor = validColors[_activeLightIndex]
         
