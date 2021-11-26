@@ -172,7 +172,7 @@ class EnhancedColorWheel {
          */
         // The colorset is the way the lights rotate
         
-        let validColors = [ValidWheelColors.gold, ValidWheelColors.green, ValidWheelColors.orange, ValidWheelColors.red]
+        let validColors = [ValidWheelColors.gold, ValidWheelColors.red, ValidWheelColors.orange, ValidWheelColors.green]
         
         let activeColor = validColors[_activeLightIndex]
         
@@ -235,37 +235,3 @@ extension Notification.Name {
     }
 
 }
-/*
-private extension ColorWheel {
-    func stateDidChange() {
-        switch _wheelState {
-        case .idle:
-            _notificationCenter.post(name: .wheelStopped, object: "Info")
-        case .running:
-            _notificationCenter.post(name: .wheelStopped, object: "I'm runnign now")
-        }
-    }
-}
-
-@objc protocol WheelStateChangeListener : AnyObject {
-    func WheelStateDidChange(isRunning: Bool)
-    var id: String {get set}
-}
-
-
-class WheelListener : WheelStateChangeListener {
-    var id = UUID().uuidString
-    
-    func WheelStateDidChange(isRunning: Bool) {
-        print("The wheel is running")
-    }
-    
-    
-}
-*/
-//
-//  EnhancedColorWheel.swift
-//  colorwheel
-//
-//  Created by Don Browning on 11/23/21.
-//

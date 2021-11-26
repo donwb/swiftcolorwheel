@@ -304,6 +304,9 @@ class ViewController: NSViewController {
         // [3, 0, 1, 2]
         
         let changeInfo = notification.userInfo?["position"]
+        // changeInfo is an array if doing multiple lights Optional([0, 1, 2])
+        // changeInfo is Optional(0) if doing 1 light
+        
         
         guard let positionArray = changeInfo as? [Int] else {
             print("shit...")
