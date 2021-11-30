@@ -19,6 +19,7 @@
 		ED912FB92570AB43004298DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED912FB82570AB43004298DA /* ViewController.swift */; };
 		ED912FBB2570AB44004298DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED912FBA2570AB44004298DA /* Assets.xcassets */; };
 		ED912FBE2570AB44004298DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED912FBC2570AB44004298DA /* Main.storyboard */; };
+		EDF1371F2756740C00749D3F /* LightControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF1371E2756740C00749D3F /* LightControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		ED912FBF2570AB44004298DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED912FC02570AB44004298DA /* colorwheel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = colorwheel.entitlements; sourceTree = "<group>"; };
 		ED912FC72570AE44004298DA /* colorwheelDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = colorwheelDebug.entitlements; sourceTree = "<group>"; };
+		EDF1371E2756740C00749D3F /* LightControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				ED912FBF2570AB44004298DA /* Info.plist */,
 				ED912FC02570AB44004298DA /* colorwheel.entitlements */,
 				ED3F3CDF274D739E00A228D7 /* EnhancedColorWheel.swift */,
+				EDF1371E2756740C00749D3F /* LightControl.swift */,
 			);
 			path = colorwheel;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				ED912FB72570AB43004298DA /* AppDelegate.swift in Sources */,
 				ED12780A2576B26500027239 /* LightDetail.swift in Sources */,
 				ED12780D2576DDCC00027239 /* HueConnection.swift in Sources */,
+				EDF1371F2756740C00749D3F /* LightControl.swift in Sources */,
 				ED658BAE257977EF00B1D9FC /* ColorWheel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
