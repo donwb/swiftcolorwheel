@@ -9,7 +9,7 @@ import Foundation
 
 
 class HueConnection {
-    let rootURL = "http://192.168.1.48"
+    let rootURL = "http://192.168.1.40"
     let basepath = "/api/"
     var username = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     
@@ -18,7 +18,15 @@ class HueConnection {
     }
     
     
-
+    var BridgeIPAddress: String {
+            get {
+                let idx = rootURL.lastIndex(of: "/")
+                let substr = rootURL.suffix(from: idx!)
+                let retVal =  String(substr)
+                
+                return retVal
+            }
+        }
     
     func GetBaseURL() -> URLComponents? {
         

@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var hueLabel: NSTextField!
     @IBOutlet weak var startButton: NSButton!
     @IBOutlet weak var stopButton: NSButton!
+    @IBOutlet weak var bridgeIPAddressLabel: NSTextField!
     
     @IBOutlet weak var startSingleButton: NSButton!
     @IBOutlet weak var stopSingleButton: NSButton!
@@ -158,6 +159,8 @@ class ViewController: NSViewController {
         let connection = HueConnection(username: hueUsername)
         let newUrlComps = connection.GetLightsURL()
         print(newUrlComps?.url)
+        
+        bridgeIPAddressLabel.stringValue = connection.BridgeIPAddress
         
         getLightsInfo(urlComps: newUrlComps!, completion:{lights, error in
             

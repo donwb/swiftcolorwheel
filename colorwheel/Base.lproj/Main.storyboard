@@ -823,7 +823,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Hh9-uc-2zt">
-                                    <rect key="frame" x="1" y="235" width="460" height="15"/>
+                                    <rect key="frame" x="1" y="234" width="460" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5hF-GZ-o4s">
@@ -980,6 +980,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3bv-Mg-BMI">
+                                <rect key="frame" x="21" y="438" width="132" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="IP Address" id="4mW-PR-9cU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="yJu-Tn-wwS" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="2Eo-gF-nWH"/>
@@ -989,6 +998,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bridgeIPAddressLabel" destination="3bv-Mg-BMI" id="p7Q-3m-wzG"/>
                         <outlet property="color0" destination="OF5-Re-1F1" id="F9F-Ds-Zgb"/>
                         <outlet property="color1" destination="hNX-Gf-LaU" id="MdV-gq-YPp"/>
                         <outlet property="color2" destination="QbE-qt-cOJ" id="NOl-vd-gtY"/>
