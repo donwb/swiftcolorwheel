@@ -9,7 +9,7 @@ import Foundation
 
 
 class HueConnection {
-    let rootURL = "http://192.168.1.40"
+    let rootURL = "http://192.168.1.67"
     let basepath = "/api/"
     var username = "PNNmIH9ajNZy2p1nhVnzsEtwYgsEmY2zvBjrrhlq"
     
