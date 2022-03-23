@@ -14,8 +14,8 @@
             filePath = "colorwheel/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "ViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "colorwheel/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "lightInfoClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,6 @@
 		ED12780D2576DDCC00027239 /* HueConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED12780C2576DDCC00027239 /* HueConnection.swift */; };
 		ED3F3CE0274D739E00A228D7 /* EnhancedColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3F3CDF274D739E00A228D7 /* EnhancedColorWheel.swift */; };
 		ED658BAE257977EF00B1D9FC /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED658BAD257977EF00B1D9FC /* ColorWheel.swift */; };
-		ED8071B125759F050030060A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = ED8071B025759F050030060A /* SwiftyJSON */; };
 		ED912FB72570AB43004298DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED912FB62570AB43004298DA /* AppDelegate.swift */; };
 		ED912FB92570AB43004298DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED912FB82570AB43004298DA /* ViewController.swift */; };
 		ED912FBB2570AB44004298DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED912FBA2570AB44004298DA /* Assets.xcassets */; };
@@ -46,7 +45,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED8071B125759F050030060A /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +106,6 @@
 			);
 			name = colorwheel;
 			packageProductDependencies = (
-				ED8071B025759F050030060A /* SwiftyJSON */,
 			);
 			productName = colorwheel;
 			productReference = ED912FB32570AB43004298DA /* colorwheel.app */;
@@ -138,7 +135,6 @@
 			);
 			mainGroup = ED912FAA2570AB43004298DA;
 			packageReferences = (
-				ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = ED912FB42570AB43004298DA /* Products */;
 			projectDirPath = "";
@@ -372,25 +368,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		ED8071B025759F050030060A /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED8071AF25759F050030060A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED912FAB2570AB43004298DA /* Project object */;
 }

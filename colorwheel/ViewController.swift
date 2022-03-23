@@ -8,7 +8,6 @@
 // https://gist.github.com/cmoulton/7ddc3cfabda1facb040a533f637e74b8
 // https://medium.com/dev-genius/how-to-make-http-requests-with-urlsession-in-swift-4dced0287d40
 import Cocoa
-import SwiftyJSON
 
 class ViewController: NSViewController {
 
